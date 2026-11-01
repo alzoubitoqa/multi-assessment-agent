@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🎓 CodeMentor AI
-### Micro-Assessment AI Agent
+### Multi-Assessment AI Agent
 
 **From passive exams to continuous, adaptive learning.**
 
