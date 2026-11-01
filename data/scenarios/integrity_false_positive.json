@@ -1,0 +1,28 @@
+{
+  "id": "integrity_false_positive",
+  "title": "Fast Answer, False Misconduct Flag",
+  "description": "How should a university respond to an automated academic integrity flag when information is incomplete?",
+  "jurisdiction": "UAE",
+  "events": [
+    {
+      "id": "speed_flag", "title": "A 2.4-second correct answer",
+      "detail": "A student's correct first-attempt answer was submitted in 2.4 seconds. The 3-second response-time heuristic generated a suspicious-answer flag. No independent misconduct evidence has been collected.",
+      "issue": "fast_answer", "visible_to": ["academic_integrity", "academic_quality"]
+    },
+    {
+      "id": "student_context", "title": "Additional performance context",
+      "detail": "Past legitimate practice sessions show that this learner can sometimes respond unusually quickly. A tutor reports that response time has not previously been used as proof of misconduct.",
+      "issue": "fairness", "visible_to": ["academic_integrity", "academic_quality"]
+    },
+    {
+      "id": "student_appeal", "title": "The student requests an explanation",
+      "detail": "The student asks how their answer-time data is stored, who can see the flag, and how to contest an inaccurate record. The institution has not yet established the relevant retention policy for this prototype.",
+      "issue": "privacy", "visible_to": ["privacy_officer", "academic_integrity"]
+    },
+    {
+      "id": "review_decision", "title": "Institutional review",
+      "detail": "The instructor confirms that no other evidence supports misconduct. A review decision and a way to correct the inaccurate flag are required before the case is closed.",
+      "issue": "review", "visible_to": ["academic_integrity", "academic_quality", "privacy_officer"]
+    }
+  ]
+}

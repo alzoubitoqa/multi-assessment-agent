@@ -1,10 +1,16 @@
-from sentence_transformers import SentenceTransformer
 from app.ingestion.embedder import collection, _model
 from config import TOP_K_RETRIEVAL
 
-def retrieve(query: str, top_k: int = TOP_K_RETRIEVAL) -> list[dict]:
+def retrieve(query: str, top_k: int = TOP_K_RETRIEVAL,
+             file_name: str | None = None) -> list[dict]:
+    """Retrieve lecture material, optionally restricting results to one lecture."""
+    if collection.count() == 0:
+        return []
     q_emb = _model.encode([query]).tolist()[0]
-    res = collection.query(query_embeddings=[q_emb], n_results=top_k)
+    params = {"query_embeddings": [q_emb], "n_results": top_k}
+    if file_name:
+        params["where"] = {"file_name": file_name}
+    res = collection.query(**params)
     out = []
     for i in range(len(res["ids"][0])):
         out.append({

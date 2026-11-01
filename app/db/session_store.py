@@ -2,14 +2,21 @@ import sqlite3
 import json
 import uuid
 import re
+from contextlib import contextmanager
 from datetime import datetime
 from config import DB_PATH
 
 
+@contextmanager
 def _conn():
+    """Commit/rollback and always release SQLite's file handle (Windows-safe)."""
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
-    return conn
+    try:
+        with conn:
+            yield conn
+    finally:
+        conn.close()
 
 
 def init_db():
@@ -102,17 +109,28 @@ def get_concept_heatmap(lecture_file: str = None) -> list[dict]:
     params = (lecture_file,) if lecture_file else ()
     
     query = f"""
-        SELECT answers.concept,
-               sessions.lecture_file,
-               MIN(answers.source_chunk_ids) as sample_chunks,
-               COUNT(*) as total_attempts,
-               SUM(answers.is_correct) as correct_attempts,
-               AVG(answers.time_spent_seconds) as avg_time
-        FROM answers
-        JOIN sessions ON answers.session_id = sessions.session_id
-        {where}
-        GROUP BY answers.concept, sessions.lecture_file
-        ORDER BY total_attempts DESC
+        WITH per_question AS (
+            SELECT answers.concept, sessions.lecture_file, sessions.session_id,
+                   MIN(answers.source_chunk_ids) AS sample_chunks,
+                   COUNT(*) AS attempts, SUM(answers.is_correct) AS correct_attempts,
+                   MAX(answers.is_correct) AS mastered,
+                   MAX(CASE WHEN answers.attempt_number = 1 THEN answers.is_correct ELSE 0 END)
+                       AS correct_first_try,
+                   SUM(answers.time_spent_seconds) AS total_time
+            FROM answers
+            JOIN sessions ON answers.session_id = sessions.session_id
+            {where}
+            GROUP BY answers.concept, sessions.lecture_file, sessions.session_id
+        )
+        SELECT concept, lecture_file, MIN(sample_chunks) AS sample_chunks,
+               SUM(attempts) AS total_attempts,
+               SUM(correct_attempts) AS correct_attempts,
+               COUNT(*) AS question_sessions, SUM(mastered) AS mastered_sessions,
+               SUM(correct_first_try) AS first_try_correct_sessions,
+               SUM(total_time) / SUM(attempts) AS avg_time
+        FROM per_question
+        GROUP BY concept, lecture_file
+        ORDER BY question_sessions DESC
     """
     
     with _conn() as conn:
@@ -122,6 +140,8 @@ def get_concept_heatmap(lecture_file: str = None) -> list[dict]:
     for row in rows:
         total = row["total_attempts"]
         correct = row["correct_attempts"] or 0
+        questions = row["question_sessions"]
+        mastered = row["mastered_sessions"] or 0
         
         page_num = "N/A"
         try:
@@ -139,7 +159,10 @@ def get_concept_heatmap(lecture_file: str = None) -> list[dict]:
             "page_number": page_num,
             "total_attempts": total,
             "correct_attempts": correct,
-            "failure_rate": round(1.0 - (correct / total), 2) if total > 0 else 0.0,
+            "question_sessions": questions,
+            "mastered_sessions": mastered,
+            "failure_rate": round(1.0 - (mastered / questions), 2) if questions else 0.0,
+            "first_try_success_rate": round(row["first_try_correct_sessions"] / questions, 2) if questions else 0.0,
             "avg_time_seconds": round(row["avg_time"] or 0, 1),
         })
     return result

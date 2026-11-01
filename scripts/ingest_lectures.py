@@ -3,8 +3,12 @@ from app.ingestion.splitter import split_pages
 from app.ingestion.embedder import embed_and_store
 from config import LECTURES_DIR
 
+# These were bundled as reference examples, not as student course materials.
+NON_LECTURE_FILES = {"unesco.pdf", "micro-assessment-agent-report.pdf"}
+
 def main():
-    pdfs = list(LECTURES_DIR.glob("*.pdf"))
+    pdfs = [path for path in LECTURES_DIR.glob("*.pdf")
+            if path.name.lower() not in NON_LECTURE_FILES]
     if not pdfs:
         print(f"لا توجد PDFs في {LECTURES_DIR}")
         return

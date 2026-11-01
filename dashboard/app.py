@@ -110,16 +110,16 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     
     .custom-footer {
-        position: fixed; left: 0; bottom: 0; width: 100%;
+        position: relative; width: 100%; margin-top: 2rem;
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
         border-top: 2px solid #4F46E5;
         padding: 15px 0; text-align: center;
         font-size: 14px; color: #1E293B; font-weight: 600;
-        z-index: 9999; box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+        z-index: 1; box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
     }
     .custom-footer span { color: #4F46E5; font-weight: 800; font-size: 16px; }
-    .block-container { padding-bottom: 100px; }
+    .block-container { padding-bottom: 3rem; }
     </style>
 """, unsafe_allow_html=True)
 
@@ -226,7 +226,7 @@ st.write("")
 st.write("")
 
 # ─── TABS ──────────────────────────────────────────────────────────
-tab1, tab2, tab3, tab4 = st.tabs(["🔥 Concept Mastery", "🕒 Session History", "📈 Activity Timeline", "🚨 Integrity Agent"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["🔥 Concept Mastery", "🕒 Session History", "📈 Activity Timeline", "🚨 Integrity Agent", "⚖️ Policy & Incident Lab"])
 
 # ─── TAB 1: CONCEPT MASTERY ────────────────────────────────────────
 with tab1:
@@ -244,7 +244,7 @@ with tab1:
             df["label"] = df["concept"]
             
         st.markdown("### Knowledge Gap Analysis")
-        st.caption("Red bars indicate concepts where students are struggling the most.")
+        st.caption("Red bars indicate concepts with the most unsuccessful question sessions, after all retries.")
         
         fig = px.bar(
             df, x="failure_rate", y="label", orientation='h',
@@ -281,9 +281,10 @@ with tab1:
         df_display = df.copy()
         df_display["Failure Rate"] = df_display["failure_rate"].apply(lambda v: f"{v*100:.0f}%")
         df_display["Accuracy"] = (1 - pd.to_numeric(df["failure_rate"], errors="coerce")).apply(lambda v: f"{v*100:.0f}%")
+        df_display["First Try Accuracy"] = df_display["first_try_success_rate"].apply(lambda v: f"{v*100:.0f}%")
         
-        cols = ["concept", "total_attempts", "correct_attempts", "Failure Rate", "Accuracy", "avg_time_seconds"]
-        new_cols = ["Concept", "Attempts", "Correct", "Failure Rate", "Accuracy", "Avg Time (s)"]
+        cols = ["concept", "question_sessions", "total_attempts", "Failure Rate", "Accuracy", "First Try Accuracy", "avg_time_seconds"]
+        new_cols = ["Concept", "Question Sessions", "Attempts", "Final Failure Rate", "Final Accuracy", "First Try Accuracy", "Avg Time (s)"]
         if "lecture_file" in df_display.columns:
             cols.insert(1, "lecture_file"); new_cols.insert(1, "Lecture File")
             
@@ -291,7 +292,7 @@ with tab1:
         df_display.columns = new_cols
         
         def color_row(row):
-            fr = float(row["Failure Rate"].rstrip("%")) / 100
+            fr = float(row["Final Failure Rate"].rstrip("%")) / 100
             if fr > 0.6: return ["background-color: #FEE2E2; color: #991B1B; font-weight: bold"] * len(row)
             if fr > 0.3: return ["background-color: #FEF3C7; color: #92400E; font-weight: bold"] * len(row)
             return ["background-color: #D1FAE5; color: #065F46; font-weight: bold"] * len(row)
@@ -345,14 +346,18 @@ with tab3:
 # ─── TAB 4: INTEGRITY AGENT ────────────────────────────────────────
 with tab4:
     st.markdown("### 🚨 Integrity & Behavioral Analysis")
-    st.caption("Detects potential AI-copying by analyzing response times (<3 seconds).")
+    st.caption("Advisory speed-based anomaly flags only; response time is not proof of AI use or academic misconduct. Independent evidence and human review are required.")
     flags = load_integrity_flags()
     if not flags: 
-        st.success("✅ No suspicious activity detected. All response times look natural.")
+        st.success("✅ No speed-based heuristic alerts in the analyzed sessions.")
     else:
-        st.error(f"⚠️ Found **{len(flags)}** suspicious session(s).")
+        st.warning(f"⚠️ Found **{len(flags)}** session(s) to review; no misconduct finding is implied.")
         # التعديل السادس: width='stretch'
         st.dataframe(pd.DataFrame(flags), width='stretch', hide_index=True)
+
+with tab5:
+    from dashboard.policy_lab import render_policy_lab
+    render_policy_lab()
 
 st.write("")
 st.write("")

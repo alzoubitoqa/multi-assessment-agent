@@ -25,6 +25,10 @@ Use simpler vocabulary and focus on the core concept.
 
 Original question: {question_text}
 Options: {options}
+Original correct answer: {correct_answer}
+
+Lecture context (do not add facts outside this context):
+{context}
 
 Return ONLY valid JSON:
 {{
@@ -34,8 +38,9 @@ Return ONLY valid JSON:
 }}"""
 
 
-def generate_hint(q: Question, student_answer: str) -> str:
-    chunks = retrieve(q.concept)
+def generate_hint(q: Question, student_answer: str,
+                  lecture_file: str | None = None) -> str:
+    chunks = retrieve(q.concept, file_name=lecture_file)
     context = "\n\n".join(c["text"] for c in chunks)
     resp = _client.chat.completions.create(
         model=LLM_MODEL,
@@ -47,13 +52,18 @@ def generate_hint(q: Question, student_answer: str) -> str:
     return resp.choices[0].message.content.strip()
 
 
-def simplify_question(q: Question) -> Question:
+def simplify_question(q: Question, lecture_file: str | None = None) -> Question:
     try:
+        chunks = retrieve(q.concept, file_name=lecture_file)
+        if not chunks:
+            return q
+        context = "\n\n".join(c["text"] for c in chunks)
         resp = _client.chat.completions.create(
             model=LLM_MODEL,
             response_format={"type": "json_object"},
             messages=[{"role": "user", "content": SIMPLIFY_PROMPT.format(
                 question_text=q.question_text, options=q.options,
+                correct_answer=q.correct_answer, context=context,
             )}],
         )
         data = json.loads(resp.choices[0].message.content)
@@ -65,10 +75,12 @@ def simplify_question(q: Question) -> Question:
         
         if not correct_answer or not isinstance(correct_answer, str):
             return q # إذا لم يعط إجابة صحيحة، نرجع السؤال الأصلي
-        if not question_text or not options or len(options) != 4:
+        if not question_text or not isinstance(options, list) or len(options) != 4:
+            return q
+        if correct_answer not in options or not all(isinstance(o, str) for o in options):
             return q # إذا كانت الخيارات ناقصة، نرجع السؤال الأصلي
 
-        return Question(
+        candidate = Question(
             question_id=q.question_id + "_simple",
             concept=q.concept,
             difficulty="easy",
@@ -78,6 +90,9 @@ def simplify_question(q: Question) -> Question:
             explanation=q.explanation,
             source_chunk_ids=q.source_chunk_ids,
         )
+        from app.agents.validator import validate_question
+        valid, _ = validate_question(candidate, lecture_file=lecture_file)
+        return candidate if valid else q
     except Exception as e:
         # في حال حدوث أي خطأ غير متوقع (مثل انقطاع الاتصال)، نرجع السؤال الأصلي بدلاً من الانهيار
         print(f"Warning: Failed to simplify question. Error: {e}")

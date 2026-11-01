@@ -2,6 +2,7 @@ import chromadb
 from sentence_transformers import SentenceTransformer
 from config import CHROMA_DIR, EMBEDDING_MODEL
 
+CHROMA_DIR.mkdir(parents=True, exist_ok=True)
 _client = chromadb.PersistentClient(path=str(CHROMA_DIR))
 collection = _client.get_or_create_collection("lectures")
 _model = SentenceTransformer(EMBEDDING_MODEL)

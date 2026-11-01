@@ -1,0 +1,170 @@
+[
+  {
+    "id": "UAE-PDPL-2021-ART1", "title": "Federal Decree-Law No. 45 of 2021 Concerning the Protection of Personal Data",
+    "jurisdiction": "UAE", "authority": "United Arab Emirates", "document_type": "law",
+    "reference": "Article 1 (Definitions)", "binding_level": "binding_where_applicable",
+    "url": "https://www.uaelegislation.gov.ae/en/legislations/1972/download",
+    "topics": ["privacy", "student records", "personal data", "identifiers"],
+    "text": "The law defines personal data to include information identifying a person directly or indirectly, including a name, identification number, and other identifying characteristics. Confirm applicability before making a compliance determination.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UAE-PDPL-2021-ART2", "title": "Federal Decree-Law No. 45 of 2021 Concerning the Protection of Personal Data",
+    "jurisdiction": "UAE", "authority": "United Arab Emirates", "document_type": "law",
+    "reference": "Article 2 (Scope of Application)", "binding_level": "binding_where_applicable",
+    "url": "https://www.uaelegislation.gov.ae/en/legislations/1972/download",
+    "topics": ["privacy", "data protection", "government exemptions", "institutional scope"],
+    "text": "Article 2 sets out the territorial scope of the personal data law and lists exceptions, including government data and certain governmental entities and specially regulated data. Do not assume that every educational institution has the same obligations under this law.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UAE-PDPL-2021-ART4", "title": "Federal Decree-Law No. 45 of 2021 Concerning the Protection of Personal Data",
+    "jurisdiction": "UAE", "authority": "United Arab Emirates", "document_type": "law",
+    "reference": "Article 4 (Cases of Processing Personal Data without Consent)", "binding_level": "binding_where_applicable",
+    "url": "https://www.uaelegislation.gov.ae/en/legislations/1972/download",
+    "topics": ["consent", "privacy", "lawful processing", "legal basis"],
+    "text": "Article 4 addresses personal data processing without consent and enumerates exceptions. An institution must establish a valid processing basis and applicable safeguards rather than assume that local storage alone provides legal compliance.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UAE-PDPL-2021-ART5", "title": "Federal Decree-Law No. 45 of 2021 Concerning the Protection of Personal Data",
+    "jurisdiction": "UAE", "authority": "United Arab Emirates", "document_type": "law",
+    "reference": "Article 5 (Personal Data Processing Controls)", "binding_level": "binding_where_applicable",
+    "url": "https://www.uaelegislation.gov.ae/en/legislations/1972/download",
+    "topics": ["retention", "accuracy", "correction", "student records", "data minimization", "privacy"],
+    "text": "Article 5 requires fair, transparent and lawful processing, purpose limitation, accuracy, correction or deletion of inaccurate personal data, appropriate security, and no retention beyond the purpose unless anonymized. These are conditional duties only if this law applies to the controller and data at issue.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UAE-PDPL-2021-ART13", "title": "Federal Decree-Law No. 45 of 2021 Concerning the Protection of Personal Data",
+    "jurisdiction": "UAE", "authority": "United Arab Emirates", "document_type": "law",
+    "reference": "Article 13 (Right to Receive Information)", "binding_level": "binding_where_applicable",
+    "url": "https://www.uaelegislation.gov.ae/en/legislations/1972/download",
+    "topics": ["access", "transparency", "student appeal", "retention", "records", "automated decisions", "privacy"],
+    "text": "Article 13 sets out requests for information about personal-data types and purposes, decisions based on automated processing, recipients, storage-period criteria, correction or deletion procedures, and complaints. Determine applicability and any statutory exceptions first.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UAE-PDPL-2021-ART15", "title": "Federal Decree-Law No. 45 of 2021 Concerning the Protection of Personal Data",
+    "jurisdiction": "UAE", "authority": "United Arab Emirates", "document_type": "law",
+    "reference": "Article 15 (Right to Correction or Erasure)", "binding_level": "binding_where_applicable",
+    "url": "https://www.uaelegislation.gov.ae/en/legislations/1972/download",
+    "topics": ["correction", "student appeal", "inaccurate record", "erasure", "privacy", "contest"],
+    "text": "Article 15 provides a request mechanism to correct inaccurate personal data or complete records, and an erasure right subject to enumerated conditions and exceptions. It does not by itself require erasure of every disputed record.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UAE-PDPL-2021-ART18", "title": "Federal Decree-Law No. 45 of 2021 Concerning the Protection of Personal Data",
+    "jurisdiction": "UAE", "authority": "United Arab Emirates", "document_type": "law",
+    "reference": "Article 18 (Right to Processing and Automated Processing)", "binding_level": "binding_where_applicable",
+    "url": "https://www.uaelegislation.gov.ae/en/legislations/1972/download",
+    "topics": ["automated decisions", "student appeal", "human review", "profiling", "contest", "privacy"],
+    "text": "Article 18 addresses objections to decisions resulting from automated processing, including profiling, with exceptions; the controller must involve a human in reviewing automated decisions at the data subject's request. Applicability and the provision's conditions must be checked.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UAE-PDPL-2021-ART22", "title": "Federal Decree-Law No. 45 of 2021 Concerning the Protection of Personal Data",
+    "jurisdiction": "UAE", "authority": "United Arab Emirates", "document_type": "law",
+    "reference": "Article 22 (Cross-Border Transfer Where Proper Protection Is Available)", "binding_level": "binding_where_applicable",
+    "url": "https://www.uaelegislation.gov.ae/en/legislations/1972/download",
+    "topics": ["privacy", "cross-border data transfer", "foreign processing", "adequate protection", "data residency"],
+    "text": "Article 22 addresses cross-border transfers of personal data where an appropriate protection level is available, including jurisdictional data-protection safeguards or relevant agreements, subject to the provision's conditions. An external service does not by itself establish that personal data crossed a border; first verify what was sent, where, and whether this law applies.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UAE-PDPL-2021-ART23", "title": "Federal Decree-Law No. 45 of 2021 Concerning the Protection of Personal Data",
+    "jurisdiction": "UAE", "authority": "United Arab Emirates", "document_type": "law",
+    "reference": "Article 23 (Cross-Border Transfer Without Proper Protection)", "binding_level": "binding_where_applicable",
+    "url": "https://www.uaelegislation.gov.ae/en/legislations/1972/download",
+    "topics": ["privacy", "cross-border data transfer", "foreign processing", "contracts", "transfer safeguards"],
+    "text": "Article 23 provides conditional pathways for cross-border transfer of personal data where a proper protection level is unavailable, including safeguards or specific exceptions. Check the full provision, destination, safeguards and institutional scope; this is not a blanket permission to send educational data to external AI services.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UAE-AI-STRATEGY-2031", "title": "UAE National Strategy for Artificial Intelligence 2031",
+    "jurisdiction": "UAE", "authority": "UAE Government", "document_type": "strategy",
+    "reference": "National AI strategy, governance and infrastructure priorities", "binding_level": "strategic_guidance",
+    "url": "https://u.ae/en/about-the-uae/digital-uae/digital-technology/artificial-intelligence/ai-resources",
+    "topics": ["AI governance", "innovation", "infrastructure", "education"],
+    "text": "The UAE's AI strategy promotes AI adoption and national capabilities, including enabling infrastructure and governance. A strategy gives policy context; it is not itself proof that an educational application satisfies legal requirements.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UNESCO-ETHICS-2021-P43", "title": "UNESCO Recommendation on the Ethics of Artificial Intelligence",
+    "jurisdiction": "GLOBAL", "authority": "UNESCO", "document_type": "recommendation",
+    "reference": "Paragraph 43 (Oversight, audit and accountability)", "binding_level": "non_binding_guidance",
+    "url": "https://www.unesco.org/en/legal-affairs/recommendation-ethics-artificial-intelligence",
+    "topics": ["auditability", "oversight", "transparency", "accountability"],
+    "text": "UNESCO recommends oversight, impact assessment, audit, and due diligence mechanisms to support accountability and traceability of AI systems throughout their life cycle.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UNESCO-ETHICS-2021-P104", "title": "UNESCO Recommendation on the Ethics of Artificial Intelligence",
+    "jurisdiction": "GLOBAL", "authority": "UNESCO", "document_type": "recommendation",
+    "reference": "Paragraph 104 (Education and research)", "binding_level": "non_binding_guidance",
+    "url": "https://www.unesco.org/en/legal-affairs/recommendation-ethics-artificial-intelligence",
+    "topics": ["education", "fairness", "student monitoring", "privacy", "academic integrity"],
+    "text": "UNESCO recommends rigorous safeguards for AI systems that monitor learners, assess abilities, or predict student behaviour. Educational AI should empower teachers and learners and avoid misuse of sensitive learner information.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "UNESCO-ETHICS-2021-P53", "title": "UNESCO Recommendation on the Ethics of Artificial Intelligence",
+    "jurisdiction": "GLOBAL", "authority": "UNESCO", "document_type": "recommendation",
+    "reference": "Paragraph 53 (Ethical impact assessment)", "binding_level": "non_binding_guidance",
+    "url": "https://www.unesco.org/en/legal-affairs/recommendation-ethics-artificial-intelligence",
+    "topics": ["risk assessment", "human oversight", "transparency", "fairness"],
+    "text": "UNESCO recommends ethical impact assessment and oversight processes, including auditability, traceability, and explainability, before and during the use of AI systems.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "ITU-AI-READINESS-2026", "title": "AI Ready: Analysis Towards a Standardized Readiness Framework",
+    "jurisdiction": "GLOBAL", "authority": "International Telecommunication Union", "document_type": "framework",
+    "reference": "AI Readiness dimensions: data governance, policy, infrastructure and innovation",
+    "binding_level": "non_binding_framework",
+    "url": "https://www.itu.int/epublications/publication/ai-ready-analysis-towards-a-standardized-readiness-framework",
+    "topics": ["AI readiness", "data governance", "standards", "infrastructure"],
+    "text": "The ITU AI Readiness framework includes dimensions for data governance, digital infrastructure, innovation ecosystems, and AI policy and implementation. These are assessment dimensions rather than a national legal obligation.",
+    "source_kind": "curated_summary"
+  },
+  {
+    "id": "OECD-AI-PRINCIPLES-TRANSPARENCY", "title": "OECD AI Principles",
+    "jurisdiction": "GLOBAL", "authority": "OECD", "document_type": "recommendation",
+    "reference": "Principle 1.3 (Transparency and Explainability)", "binding_level": "non_binding_guidance",
+    "url": "https://oecd.ai/en/dashboards/ai-principles/P7",
+    "topics": ["global comparison", "transparency", "explainability", "contest", "student appeal", "oversight"],
+    "text": "OECD AI Principle 1.3 promotes transparency and responsible disclosure, including meaningful information that enables affected people to understand and challenge AI-informed outcomes. This is comparative international guidance, not a UAE legal mandate.",
+    "source_kind": "curated_summary", "comparison_only": true
+  },
+  {
+    "id": "EU-AI-ACT-ANNEX3-EDUCATION", "title": "Regulation (EU) 2024/1689 (AI Act)",
+    "jurisdiction": "EU", "authority": "European Union", "document_type": "foreign_law_comparator",
+    "reference": "Annex III, point 3 (Education and Vocational Training)",
+    "binding_level": "comparative_foreign_law",
+    "url": "https://eur-lex.europa.eu/eli/reg/2024/1689",
+    "topics": ["global comparison", "education", "assessment", "academic integrity", "monitoring tests", "risk governance"],
+    "text": "The EU AI Act identifies certain educational uses, including evaluation of learning outcomes and monitoring or detecting prohibited student behaviour during tests, as Annex III high-risk use cases subject to the Act's classification conditions and implementation timetable. It is a foreign policy example, NOT automatically applicable in the UAE or a legal classification of this prototype.",
+    "source_kind": "curated_summary", "comparison_only": true
+  },
+  {
+    "id": "UAE-PDPL-2021-FULL", "title": "Federal Decree-Law No. 45 of 2021 - Official Full Text",
+    "jurisdiction": "UAE", "authority": "United Arab Emirates", "document_type": "law",
+    "reference": "Official full text (page-level citation after indexing)",
+    "binding_level": "binding_where_applicable",
+    "url": "https://www.uaelegislation.gov.ae/en/legislations/1972/download",
+    "local_pdf": "UAE_PDPL_2021.pdf",
+    "topics": ["data protection", "personal data", "privacy", "legal applicability"],
+    "text": "Index the attached official full legal text to retrieve original statutory wording and page references; applicability and exceptions require legal review.",
+    "source_kind": "catalog_metadata"
+  },
+  {
+    "id": "UAE-AI-STRATEGY-2031-FULL", "title": "UAE National Strategy for Artificial Intelligence 2031 - Official Full Text",
+    "jurisdiction": "UAE", "authority": "UAE Government", "document_type": "strategy",
+    "reference": "Official strategy document (page-level citation after indexing)",
+    "binding_level": "strategic_guidance",
+    "url": "https://ai.gov.ae/wp-content/uploads/2021/07/UAE-National-Strategy-for-Artificial-Intelligence-2031.pdf",
+    "local_pdf": "UAE_AI_Strategy_2031.pdf",
+    "topics": ["AI strategy", "education", "AI governance", "innovation"],
+    "text": "Index the official national strategy PDF to retrieve original policy priorities and statements, distinguishing strategy objectives from law.",
+    "source_kind": "catalog_metadata"
+  }
+]

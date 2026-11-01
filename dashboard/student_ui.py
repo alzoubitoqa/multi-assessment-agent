@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 import time
+from html import escape
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -109,7 +110,8 @@ def start_quiz(student_id, lecture_file, concept):
     st.session_state.session_id = session_id
     st.session_state.student_name = student_id
     state = {
-        "session_id": session_id, "concept": concept, "difficulty": "medium",
+        "session_id": session_id, "lecture_file": lecture_file,
+        "concept": concept, "difficulty": "medium",
         "max_attempts": 3, "question": None, "attempt": 0,
         "student_answer": None, "time_spent": 0.0, "hint_text": None,
         "is_correct": None, "done": False, "feedback": "",
@@ -166,8 +168,8 @@ else:
     
     st.markdown(f"""
         <div style="background: rgba(255, 255, 255, 0.9); padding: 15px 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; justify-content: space-between; margin-bottom: 20px; border-left: 5px solid #4f46e5;">
-            <span style="font-weight: 600; color: #334155;">👤 {st.session_state.student_name}</span>
-            <span style="font-weight: 600; color: #4f46e5;">🧠 {state['concept']}</span>
+            <span style="font-weight: 600; color: #334155;">👤 {escape(st.session_state.student_name)}</span>
+            <span style="font-weight: 600; color: #4f46e5;">🧠 {escape(state['concept'])}</span>
         </div>
     """, unsafe_allow_html=True)
 
@@ -198,7 +200,7 @@ else:
 
     # هنا نحتفظ بالـ form لكي لا يتم إرسال الإجابة إلا عند الضغط على الزر
     with st.form("answer_form"):
-        st.markdown(f"<h3 style='color: #1e293b; line-height: 1.5;'>{q['question_text']}</h3>", unsafe_allow_html=True)
+        st.markdown(f"<h3 style='color: #1e293b; line-height: 1.5;'>{escape(q['question_text'])}</h3>", unsafe_allow_html=True)
         st.write("")
         
         selected_option = st.radio("Choose the correct answer:", q["options"], index=None, label_visibility="collapsed")

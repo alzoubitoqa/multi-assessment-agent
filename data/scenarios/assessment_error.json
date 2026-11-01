@@ -1,0 +1,28 @@
+{
+  "id": "assessment_error",
+  "title": "Hallucinated Question and Assessment Failure",
+  "description": "An invalid question reaches students, triggering a technical and institutional response.",
+  "jurisdiction": "UAE",
+  "events": [
+    {
+      "id": "bad_pdf", "title": "Source extraction failure",
+      "detail": "A malformed lecture PDF produces incomplete text. A generated question's declared answer is not fully supported by the source, and the validator did not reject it.",
+      "issue": "invalid_question", "visible_to": ["academic_quality"]
+    },
+    {
+      "id": "student_impact", "title": "Affected student attempts",
+      "detail": "Several students have already answered the invalid question. Some received wrong-answer records, and the instructor heatmap includes those attempts.",
+      "issue": "student_impact", "visible_to": ["academic_quality", "academic_integrity"]
+    },
+    {
+      "id": "external_processing", "title": "Cross-system data flow discovered",
+      "detail": "Retrieved lecture excerpts were transmitted to an external LLM provider during generation. The institution must determine whether the uploaded content was approved for that processing and whether any personal data was present.",
+      "issue": "privacy", "visible_to": ["privacy_officer"]
+    },
+    {
+      "id": "institutional_response", "title": "Review and remedy requested",
+      "detail": "The academic quality committee requests evidence of the question source, a corrected result for affected students, a documented incident response, and updated validation controls.",
+      "issue": "review", "visible_to": ["academic_quality", "academic_integrity", "privacy_officer"]
+    }
+  ]
+}

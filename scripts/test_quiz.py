@@ -44,12 +44,13 @@ def choose_lecture_and_concept() -> tuple[str, str]:
     return file_name, concepts[int(choice) - 1]["name"]
 
 
-def run_question(session_id: str, concept: str,
+def run_question(session_id: str, concept: str, lecture_file: str | None = None,
                  difficulty: str = "medium",
                  max_attempts: int = 3) -> bool:
     graph = build_graph()
     state: dict = {
         "session_id": session_id,
+        "lecture_file": lecture_file,
         "concept": concept,
         "difficulty": difficulty,
         "max_attempts": max_attempts,
@@ -116,7 +117,7 @@ def main():
     print(f"Session created: {session_id}\n")
 
     print(f"Running adaptive quiz for: {concept}\n")
-    run_question(session_id, concept)
+    run_question(session_id, concept, lecture_file=lecture_file)
 
     end_session(session_id)
     stats = get_session_stats(session_id)

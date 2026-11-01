@@ -24,9 +24,13 @@ Return ONLY valid JSON:
 }}"""
 
 
-def validate_question(q: Question) -> tuple[bool, str]:
+def validate_question(q: Question, lecture_file: str | None = None) -> tuple[bool, str]:
     """Returns (is_valid, reason)."""
-    chunks = retrieve(q.concept)
+    chunks = retrieve(q.concept, file_name=lecture_file)
+    retrieved_ids = {chunk["chunk_id"] for chunk in chunks}
+    claimed_ids = set(q.source_chunk_ids)
+    if not claimed_ids or not claimed_ids.issubset(retrieved_ids):
+        return False, "Missing or unverified source chunk citations."
     context = "\n\n".join(c["text"] for c in chunks)
 
     resp = _client.chat.completions.create(

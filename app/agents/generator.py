@@ -35,8 +35,9 @@ def _clean_chunk_id(cid: str) -> str:
     return re.sub(r"[\[\]]", "", cid).strip()
 
 
-def _generate_once(concept: str, difficulty: str) -> Question | None:
-    chunks = retrieve(concept)
+def _generate_once(concept: str, difficulty: str,
+                   lecture_file: str | None = None) -> Question | None:
+    chunks = retrieve(concept, file_name=lecture_file)
     if not chunks:
         return None
 
@@ -65,7 +66,7 @@ def _generate_once(concept: str, difficulty: str) -> Question | None:
     chunk_ids = [_clean_chunk_id(c) for c in data.get("source_chunk_ids", [])]
     chunk_ids = [c for c in chunk_ids if c]
 
-    h = hashlib.md5((context + concept + difficulty).encode()).hexdigest()[:6]
+    h = hashlib.md5((context + concept + difficulty + (lecture_file or "")).encode()).hexdigest()[:6]
     return Question(
         question_id=f"q_{concept.replace(' ', '_')}_{difficulty}_{h}",
         concept=concept,
@@ -79,9 +80,10 @@ def _generate_once(concept: str, difficulty: str) -> Question | None:
 
 
 def generate_question(concept: str, difficulty: str = "medium",
-                      max_retries: int = 3) -> Question | None:  # رفعنا المحاولات إلى 3
+                      max_retries: int = 3,
+                      lecture_file: str | None = None) -> Question | None:
     for attempt in range(max_retries):
-        q = _generate_once(concept, difficulty)
+        q = _generate_once(concept, difficulty, lecture_file=lecture_file)
         if q is None:
             continue
 
@@ -89,7 +91,7 @@ def generate_question(concept: str, difficulty: str = "medium",
             return q
 
         from app.agents.validator import validate_question
-        is_valid, reason = validate_question(q)
+        is_valid, reason = validate_question(q, lecture_file=lecture_file)
         if is_valid:
             print(f"   ✓ Validated (attempt {attempt + 1})")
             return q

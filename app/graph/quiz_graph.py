@@ -8,6 +8,7 @@ from app.models.schemas import Question
 
 class QuizState(TypedDict, total=False):
     session_id: str
+    lecture_file: str
     concept: str
     difficulty: str
     max_attempts: int
@@ -61,7 +62,8 @@ def _resolve(raw: str, options: list[str]) -> str:
 # ─── NODES ─────────────────────────────────────────────────────────
 
 def generate_node(state: QuizState) -> dict:
-    q = generate_question(state["concept"], state.get("difficulty", "medium"))
+    q = generate_question(state["concept"], state.get("difficulty", "medium"),
+                          lecture_file=state.get("lecture_file"))
     if q is None:
         return {
             **state,
@@ -135,7 +137,8 @@ def evaluate_node(state: QuizState) -> dict:
 
 def hint_node(state: QuizState) -> dict:
     q = _deserialize(state["question"])
-    hint = generate_hint(q, state.get("_last_wrong_answer") or "")
+    hint = generate_hint(q, state.get("_last_wrong_answer") or "",
+                         lecture_file=state.get("lecture_file"))
     return {
         **state,
         "hint_text": hint,
@@ -145,7 +148,7 @@ def hint_node(state: QuizState) -> dict:
 
 def simplify_node(state: QuizState) -> dict:
     q = _deserialize(state["question"])
-    simplified = simplify_question(q)
+    simplified = simplify_question(q, lecture_file=state.get("lecture_file"))
     return {
         **state,
         "question": _serialize(simplified),

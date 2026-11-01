@@ -6,3 +6,4 @@ data/chroma_db/
 data/*.db
 .streamlit/
 data/concepts_cache.json
+data/policies/sources/
