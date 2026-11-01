@@ -8,7 +8,10 @@
   scenarios, three role-scoped institutional advisers, inter-agent synthesis,
   explicit human review and JSON audit export.
 - [x] UAE and international seed policy KB with provenance, separate foreign
-  policy examples and optional page-aware indexing of the UAE official PDF.
+  policy examples, page-aware official-PDF indexing and portable export script.
+- [x] Standalone policy KB export includes JSON catalog, official PDFs available
+  at build time, provenance CSV, indexable JSONL and an integrity manifest.
+  See `docs/KNOWLEDGE_BASE_SUBMISSION.md`.
 - [x] ITU Y.3172 conceptual pipeline and AI Readiness discussion.
 - [x] Current technical-report **content** in `TECHNICAL_REPORT_LATEST.md`,
   an updated PDF builder, and a comparison of exported runs. The older PDF

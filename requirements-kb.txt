@@ -1,0 +1,6 @@
+# Minimal requirements for policy PDF extraction and local vector indexing.
+# Offline export without PDFs uses only the Python standard library.
+pypdf>=4.2.0
+langchain-text-splitters>=0.2.0
+chromadb>=1.0.0
+sentence-transformers>=3.0.0
